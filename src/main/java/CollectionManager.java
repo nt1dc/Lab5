@@ -40,11 +40,9 @@ public class CollectionManager {
     /**
      * Loading collection from file
      *
-     * @param collectionPath
-     * @throws IOException
      */
     public void load(String collectionPath) throws IOException, XMLParseException,XMLStreamException {
-        groups = new PriorityQueue<StudyGroup>();
+        groups = new PriorityQueue<>();
         File file = new File(collectionPath);
         ObjectMapper xmlMapper = new XmlMapper();
 
@@ -60,13 +58,10 @@ public class CollectionManager {
      * HelpMethod for  load
      * BufferReading
      *
-     * @param is
-     * @return
-     * @throws IOException
      */
-    private String inputStreamToString(InputStream is) throws IOException {
+    private String inputStreamToString(InputStream is) {
         StringBuilder sb = new StringBuilder();
-        String line = new String();
+        String line = "";
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
         while (true) {
             try {
@@ -120,12 +115,15 @@ public class CollectionManager {
     /**
      * add element to collection
      *
-     * @param scanner
      */
     public void add(Scanner scanner) {
-        GroupBuilder newGroup = new GroupBuilder(scanner);
-        newGroup.setFields();
-        groups.add(newGroup.studyGropCreator());
+        try {
+            GroupBuilder newGroup = new GroupBuilder(scanner);
+            newGroup.setFields();
+            groups.add(newGroup.studyGropCreator());
+        }catch (NullPointerException e){
+            System.exit(0);
+        }
 
     }
 
@@ -147,8 +145,6 @@ public class CollectionManager {
     /**
      * Update element of collection by ID
      *
-     * @param id
-     * @param scanner
      */
     public void update(String id, Scanner scanner) {
         try {
@@ -214,7 +210,6 @@ public class CollectionManager {
     /**
      * Delete element of collection by id
      *
-     * @param id
      */
     public void remove_by_id(String id) {
         correctly = false;
@@ -246,7 +241,6 @@ public class CollectionManager {
     /**
      * Delete element of collection by FormOfEducation
      *
-     * @param form
      */
     public void remove_all_by_form_of_education(String form) {
         correctly = false;
@@ -269,7 +263,6 @@ public class CollectionManager {
     /**
      * Shows count of groups with entered semester
      *
-     * @param semeter
      */
     public void count_by_semester_enum(String semeter) {
         if (semeter.equals("THIRD") || semeter.equals("FIFTH") || semeter.equals("SIXTH")) {
@@ -294,7 +287,6 @@ public class CollectionManager {
     /**
      * Add new element if, it's count of students less than minimum
      *
-     * @param scanner
      */
     public void add_if_min(Scanner scanner) {
         try {

@@ -204,7 +204,6 @@ public class GroupBuilder {
 
     /**
      * Возвращает объект StudyGroup
-     * @return
      */
     public StudyGroup studyGropCreator() {
         return new StudyGroup(name, x, y, studentsCount, formOfEducation, semester, adminName, birthday, height, weight, passportID);

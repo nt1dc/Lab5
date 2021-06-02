@@ -13,16 +13,6 @@ public class StudyGroup implements Comparable<StudyGroup> {
     public StudyGroup() {
     }
 
-    public StudyGroup(Long id, String name, Coordinates coordinates, int x, Double y, Date creationDate, int studentsCount, FormOfEducation formOfEducation, Semester semesterEnum, Person groupAdmin, String adminName, Date birthday, long height, Long weight, String passportID) {
-        this.id = id;
-        this.name = name;
-        this.coordinates = new Coordinates(x, y);
-        this.studentsCount = studentsCount;
-        this.formOfEducation = formOfEducation;
-        this.semesterEnum = semesterEnum;
-        this.groupAdmin = new Person(adminName, birthday, height, weight, passportID);
-    }
-
     public StudyGroup(String name, int x, double y, int studentsCount, FormOfEducation formOfEducation, Semester semesterEnum, String adminName, Date birthday, long height, Long weight, String passportID) {
         Date timeForID = new Date();
         this.id = timeForID.getTime();
@@ -33,9 +23,6 @@ public class StudyGroup implements Comparable<StudyGroup> {
         this.formOfEducation = formOfEducation;
         this.semesterEnum = semesterEnum;
         this.groupAdmin = new Person(adminName, birthday, height, weight, passportID);
-    }
-    public StudyGroup create() {
-        return new StudyGroup(getName(), coordinates.getX(), coordinates.getY(), studentsCount, formOfEducation, semesterEnum, groupAdmin.getName(), groupAdmin.getBirthday(), groupAdmin.getHeight(), groupAdmin.getWeight(), groupAdmin.getPassportID());
     }
 
     public void updateName(Scanner scanner) {
@@ -78,7 +65,7 @@ public class StudyGroup implements Comparable<StudyGroup> {
         } catch (NullPointerException e) {
             System.exit(0);
         } catch (NoSuchElementException e) {
-
+            System.exit(0);
         }
     }
 
@@ -188,19 +175,6 @@ public class StudyGroup implements Comparable<StudyGroup> {
     }
 
 
-    public void setFields(Scanner scanner) {
-        updateName(scanner);
-        coordinates.updateX(scanner);
-        coordinates.updateY(scanner);
-        updateStudentsCount(scanner);
-        updateFormOfEducationByScan(scanner);
-        updateSemesterEnum(scanner);
-        groupAdmin.updateName(scanner);
-        groupAdmin.updateBirthday(scanner);
-        groupAdmin.updateHeight(scanner);
-        groupAdmin.updateWeight(scanner);
-        groupAdmin.updatePassportID(scanner);
-    }
 }
 
 class Coordinates {
@@ -407,5 +381,5 @@ class Person {
 enum Semester {
     THIRD,
     FIFTH,
-    SIXTH;
+    SIXTH
 }

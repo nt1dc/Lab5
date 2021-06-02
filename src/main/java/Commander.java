@@ -21,11 +21,9 @@ public class Commander {
      * Хрень которая лишила меня сна 19.05.2021-20.05.2021
      * а в дальнейшем мб и вуза =/
      *
-     * @param path
-     * @throws FileNotFoundException
      */
 
-    private void execute_script(String path) throws FileNotFoundException {
+    private void execute_script(String path) {
 
         if (execute_Files.contains(path)) {
             System.out.println("Looping " +"\n"+
@@ -54,7 +52,7 @@ public class Commander {
                     }
                 }
                 finalUserCommand = userCommand.trim().split(" ", 2);
-                start(finalUserCommand, exScanner);
+                start(exScanner);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -64,7 +62,6 @@ public class Commander {
     /**
      * Interactive mod
      *
-     * @throws IOException
      */
     public void interactiveMod() throws IOException {
         try (Scanner commandReader = new Scanner(System.in)) {
@@ -72,7 +69,7 @@ public class Commander {
                 try {
                     userCommand = commandReader.nextLine();
                     finalUserCommand = userCommand.trim().split(" ", 2);
-                    start(finalUserCommand, commandReader);
+                    start(commandReader);
                 } catch (NoSuchElementException e) {
                     System.exit(0);
                 }
@@ -85,10 +82,8 @@ public class Commander {
     /**
      * Gets command and use them
      *
-     * @param finalUserCommand
-     * @param scanner
      */
-    public void start(String[] finalUserCommand, Scanner scanner) {
+    public void start( Scanner scanner) {
 
         try {
             history[5] = this.finalUserCommand[0];
