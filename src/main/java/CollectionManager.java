@@ -121,6 +121,7 @@ public class CollectionManager {
         GroupBuilder newGroup = new GroupBuilder(scanner);
         newGroup.setFields();
         groups.add(newGroup.studyGropCreator());
+
     }
 
     /**
@@ -132,9 +133,9 @@ public class CollectionManager {
 
             if (groups.size() != 0)
                 groups.forEach(group -> System.out.println(group.toString() + "\n"));
-            else System.out.println("Коллекция пуста.");
+            else System.out.println("Empty collection");
         } catch (NullPointerException e) {
-            System.out.println("Пустая коллекция");
+            System.out.println("Empty collection");
         }
     }
 

@@ -99,7 +99,7 @@ public class GroupBuilder {
 
     public void setFormOfEducation() {
         try {
-            System.out.println("Выберите формат обучениея DISTANCE_EDUCATION FULL_TIME_EDUCATION EVENING_CLASSESChose form of education DISTANCE_EDUCATION FULL_TIME_EDUCATION EVENING_CLASSES ");
+            System.out.println("Chose form of education DISTANCE_EDUCATION FULL_TIME_EDUCATION EVENING_CLASSESChose form of education DISTANCE_EDUCATION FULL_TIME_EDUCATION EVENING_CLASSES ");
             formOfEducation = FormOfEducation.valueOf(data.nextLine().toUpperCase());
         } catch (IllegalArgumentException e) {
             System.out.println("Incorrect form of education");

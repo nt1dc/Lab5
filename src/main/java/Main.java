@@ -1,7 +1,6 @@
 import java.io.IOException;
 
 public class Main {
-
     public static void main(String[] args) throws IOException {
         if (args.length > 0) {
             Commander commander = new Commander(new CollectionManager(args[0]));

@@ -34,6 +34,9 @@ public class StudyGroup implements Comparable<StudyGroup> {
         this.semesterEnum = semesterEnum;
         this.groupAdmin = new Person(adminName, birthday, height, weight, passportID);
     }
+    public StudyGroup create() {
+        return new StudyGroup(getName(), coordinates.getX(), coordinates.getY(), studentsCount, formOfEducation, semesterEnum, groupAdmin.getName(), groupAdmin.getBirthday(), groupAdmin.getHeight(), groupAdmin.getWeight(), groupAdmin.getPassportID());
+    }
 
     public void updateName(Scanner scanner) {
         System.out.println("Enter group name \n");
@@ -185,6 +188,19 @@ public class StudyGroup implements Comparable<StudyGroup> {
     }
 
 
+    public void setFields(Scanner scanner) {
+        updateName(scanner);
+        coordinates.updateX(scanner);
+        coordinates.updateY(scanner);
+        updateStudentsCount(scanner);
+        updateFormOfEducationByScan(scanner);
+        updateSemesterEnum(scanner);
+        groupAdmin.updateName(scanner);
+        groupAdmin.updateBirthday(scanner);
+        groupAdmin.updateHeight(scanner);
+        groupAdmin.updateWeight(scanner);
+        groupAdmin.updatePassportID(scanner);
+    }
 }
 
 class Coordinates {
