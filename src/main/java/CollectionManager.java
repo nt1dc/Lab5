@@ -84,12 +84,12 @@ public class CollectionManager {
      * Read help-file
      */
     public void help() {
-        File helpFile = new File("help.txt");
-        Scanner scanner = null;
+        File helpFile = new File("resources/help.txt");
+        Scanner scanner =null;
         try {
             scanner = new Scanner(helpFile);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println("Problem with helpFile");
         }
         while (scanner.hasNextLine()) {
             System.out.println(scanner.nextLine());
