@@ -2,6 +2,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
+import javax.management.modelmbean.XMLParseException;
+import javax.xml.stream.XMLStreamException;
 import java.io.*;
 import java.util.Date;
 import java.util.PriorityQueue;
@@ -21,8 +23,10 @@ public class CollectionManager {
         try {
             savePath = collectionPath;
             load(collectionPath);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (XMLParseException|XMLStreamException|IOException exception ) {
+            System.out.println("Error while parsing from file");
+            System.exit(0);
+        }catch (Exception e){
             System.out.println("Something gone wrong with file");
             System.exit(0);
         }
@@ -39,10 +43,11 @@ public class CollectionManager {
      * @param collectionPath
      * @throws IOException
      */
-    public void load(String collectionPath) throws IOException {
+    public void load(String collectionPath) throws IOException, XMLParseException,XMLStreamException {
         groups = new PriorityQueue<StudyGroup>();
         File file = new File(collectionPath);
         ObjectMapper xmlMapper = new XmlMapper();
+
         String xml = inputStreamToString(new FileInputStream(file));
         groups = xmlMapper.readValue(xml, new TypeReference<PriorityQueue<StudyGroup>>() {
         });
@@ -84,7 +89,7 @@ public class CollectionManager {
      * Read help-file
      */
     public void help() {
-        File helpFile = new File("resources/help.txt");
+        File helpFile = new File("help.txt");
         Scanner scanner =null;
         try {
             scanner = new Scanner(helpFile);
