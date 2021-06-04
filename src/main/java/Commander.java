@@ -20,13 +20,12 @@ public class Commander {
     /**
      * Хрень которая лишила меня сна 19.05.2021-20.05.2021
      * а в дальнейшем мб и вуза =/
-     *
      */
 
     private void execute_script(String path) {
 
         if (execute_Files.contains(path)) {
-            System.out.println("Looping " +"\n"+
+            System.out.println("Looping " + "\n" +
                     "Going to intensive mod ");
             try {
                 execute_Files.clear();
@@ -54,14 +53,13 @@ public class Commander {
                 finalUserCommand = userCommand.trim().split(" ", 2);
                 start(exScanner);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
         }
     }
 
     /**
      * Interactive mod
-     *
      */
     public void interactiveMod() throws IOException {
         try (Scanner commandReader = new Scanner(System.in)) {
@@ -81,9 +79,8 @@ public class Commander {
 
     /**
      * Gets command and use them
-     *
      */
-    public void start( Scanner scanner) {
+    public void start(Scanner scanner) {
 
         try {
             history[5] = this.finalUserCommand[0];
@@ -107,7 +104,7 @@ public class Commander {
                     manager.show();
                     break;
                 case "update":
-                    manager.update(this.finalUserCommand[1],scanner);
+                    manager.update(this.finalUserCommand[1], scanner);
                     break;
                 case "clear":
                     manager.clear();
@@ -155,7 +152,7 @@ public class Commander {
                     manager.print_unique_semester_enum();
                     break;
                 default:
-//                    execute_Files.lastIndexOf();
+                    if (finalUserCommand[0].equals("exit")) System.exit(0);
                     System.out.println("Unknown command. Use 'help' for help.");
                     for (int i = 5; i > 0; i--) {
                         history[i] = history[i - 1];

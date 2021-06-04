@@ -15,7 +15,7 @@ public class StudyGroup implements Comparable<StudyGroup> {
 
     public StudyGroup(String name, int x, double y, int studentsCount, FormOfEducation formOfEducation, Semester semesterEnum, String adminName, Date birthday, long height, Long weight, String passportID) {
         Date timeForID = new Date();
-        this.id = timeForID.getTime();
+        this.id = Math.abs(UUID.randomUUID().getLeastSignificantBits());
         this.name = name;
         this.coordinates = new Coordinates(x, y);
         this.creationDate = new Date();

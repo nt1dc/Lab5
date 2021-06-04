@@ -91,8 +91,11 @@ public class CollectionManager {
         } catch (Exception e) {
             System.out.println("Problem with helpFile");
         }
-        while (scanner.hasNextLine()) {
-            System.out.println(scanner.nextLine());
+        System.out.println(helpFile.getAbsolutePath());
+        try {
+            while (scanner.hasNextLine()) System.out.println(scanner.nextLine());
+        }catch (Exception e){
+            System.out.println("Problem with helpFile");
         }
     }
 
@@ -135,7 +138,9 @@ public class CollectionManager {
 
 
             if (groups.size() != 0)
-                groups.forEach(group -> System.out.println(group.toString() + "\n"));
+                for (StudyGroup group : groups){
+                    System.out.println(group.toString()+"\n");
+                }
             else System.out.println("Empty collection");
         } catch (NullPointerException e) {
             System.out.println("Empty collection");
